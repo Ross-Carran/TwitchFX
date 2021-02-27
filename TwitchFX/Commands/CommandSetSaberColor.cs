@@ -18,12 +18,18 @@ namespace TwitchFX.Commands {
 			
 			Color leftColor = ParseColor(args[0]);
 			Color rightColor = ParseColor(args[1]);
-			
-			float? duration = TryParseFloat(args, 2);
-			
-			ColorController.instance.SetSaberColors(leftColor, rightColor, duration);
-			
-		}
+
+            if (leftColor == rightColor)
+            {
+                throw new InvalidCommandExecutionException("Command not executed: You must enter two different colors as arguments");
+            }
+            else
+            {
+                float? duration = TryParseFloat(args, 2);
+
+                ColorController.instance.SetSaberColors(leftColor, rightColor, duration);
+            }
+        }
 		
 	}
 	
